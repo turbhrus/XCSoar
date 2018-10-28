@@ -240,6 +240,8 @@ private:
   void DrawFlightMode(Canvas &canvas, const PixelRect &rc) const;
   void DrawGPSStatus(Canvas &canvas, const PixelRect &rc,
                      const NMEAInfo &info) const;
+  void DrawDebugMsgExt(Canvas &canvas, const PixelRect &rc) const;
+  void DrawDebugMsgInt(Canvas &canvas, const PixelRect &rc) const;
   void DrawCrossHairs(Canvas &canvas) const;
   void DrawPanInfo(Canvas &canvas) const;
   void DrawThermalBand(Canvas &canvas, const PixelRect &rc) const;

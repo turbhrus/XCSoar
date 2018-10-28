@@ -36,6 +36,7 @@ Copyright_License {
 #include "DeviceInfo.hpp"
 #include "FLARM/Data.hpp"
 #include "Geo/SpeedVector.hpp"
+#include "MAVLink.hpp"
 
 #include <type_traits>
 
@@ -358,6 +359,16 @@ struct NMEAInfo {
 
   FlarmData flarm;
 
+  /* Buffer for debug messages */
+  TCHAR debug_msg_ext_buffer[MAVLINK_MSG_STATUSTEXT_FIELD_TEXT_LEN+1];
+  size_t debug_msg_ext_len;
+  Validity debug_msg_ext_available;
+
+  /* Buffer for internal debug messages */
+  TCHAR debug_msg_int_buffer[MAVLINK_MSG_STATUSTEXT_FIELD_TEXT_LEN+1];
+  size_t debug_msg_int_len;
+  Validity debug_msg_int_available;
+
   void UpdateClock();
 
   /**
@@ -590,6 +601,20 @@ struct NMEAInfo {
   void ProvideExternalWind(const SpeedVector &value) {
     external_wind = value;
     external_wind_available.Update(clock);
+  }
+
+  void ProvideDebugMsgExt(const TCHAR *str, size_t len)
+  {
+    CopyString(debug_msg_ext_buffer, str, len);
+    debug_msg_ext_len = len;
+    debug_msg_ext_available.Update(clock);
+  }
+
+  void ProvideDebugMsgInt(const TCHAR *str, size_t len)
+  {
+    CopyString(debug_msg_int_buffer, str, len);
+    debug_msg_int_len = len;
+    debug_msg_int_available.Update(clock);
   }
 
   /**

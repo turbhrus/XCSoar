@@ -205,6 +205,9 @@ NMEAInfo::Reset()
   device.Clear();
   secondary_device.Clear();
   flarm.Clear();
+
+  debug_msg_ext_available.Clear();
+  debug_msg_int_available.Clear();
 }
 
 void
@@ -259,6 +262,8 @@ NMEAInfo::Expire()
   flarm.Expire(clock);
   gps.Expire(clock);
   attitude.Expire(clock);
+  debug_msg_ext_available.Expire(clock,5);
+  debug_msg_int_available.Expire(clock,5);
 }
 
 void
@@ -372,4 +377,13 @@ NMEAInfo::Complement(const NMEAInfo &add)
     stall_ratio = add.stall_ratio;
 
   flarm.Complement(add.flarm);
+
+  if( debug_msg_ext_available.Complement(add.debug_msg_ext_available)){
+    debug_msg_ext_len = add.debug_msg_ext_len;
+    CopyString(debug_msg_ext_buffer, add.debug_msg_ext_buffer, debug_msg_ext_len);
+  }
+  if( debug_msg_int_available.Complement(add.debug_msg_int_available)){
+    debug_msg_int_len = add.debug_msg_int_len;
+    CopyString(debug_msg_int_buffer, add.debug_msg_int_buffer, debug_msg_int_len);
+  }
 }

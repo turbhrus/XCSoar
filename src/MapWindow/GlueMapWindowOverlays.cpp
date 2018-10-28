@@ -177,6 +177,44 @@ GlueMapWindow::DrawGPSStatus(Canvas &canvas, const PixelRect &rc,
 }
 
 void
+GlueMapWindow::DrawDebugMsgExt(Canvas &canvas, const PixelRect &rc) const
+{
+  if( !( Basic().debug_msg_ext_available.IsValid() )){
+    return;
+  } else{
+
+    PixelScalar x = rc.left   + Layout::FastScale(2);
+    PixelScalar y = rc.bottom - Layout::FastScale(50);
+
+    TextInBoxMode mode;
+    mode.shape = LabelShape::ROUNDED_BLACK;
+
+    const Font &font = *look.overlay_font;
+    canvas.Select(font);
+    TextInBox(canvas, Basic().debug_msg_ext_buffer, x, y, mode, rc, nullptr);
+  }
+}
+
+void
+GlueMapWindow::DrawDebugMsgInt(Canvas &canvas, const PixelRect &rc) const
+{
+  if( !( Basic().debug_msg_int_available.IsValid() )){
+    return;
+  } else{
+
+    PixelScalar x = rc.left   + Layout::FastScale(2);
+    PixelScalar y = rc.bottom - Layout::FastScale(65);
+
+    TextInBoxMode mode;
+    mode.shape = LabelShape::ROUNDED_BLACK;
+
+    const Font &font = *look.overlay_font;
+    canvas.Select(font);
+    TextInBox(canvas, Basic().debug_msg_int_buffer, x, y, mode, rc, nullptr);
+  }
+}
+
+void
 GlueMapWindow::DrawFlightMode(Canvas &canvas, const PixelRect &rc) const
 {
   PixelScalar offset = 0;

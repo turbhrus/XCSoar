@@ -76,6 +76,12 @@ VEGA_SOURCES = \
 	$(DRIVER_SRC_DIR)/Vega/Volatile.cpp \
 	$(DRIVER_SRC_DIR)/Vega/Register.cpp
 
+PIXHAWK_SOURCES = \
+	$(DRIVER_SRC_DIR)/Pixhawk/Register.cpp \
+	$(DRIVER_SRC_DIR)/Pixhawk/Parser.cpp \
+	$(DRIVER_SRC_DIR)/Pixhawk/Volatile.cpp \
+	$(DRIVER_SRC_DIR)/Pixhawk/Misc.cpp
+
 BLUEFLY_SOURCES = \
 	$(DRIVER_SRC_DIR)/BlueFly/Misc.cpp \
 	$(DRIVER_SRC_DIR)/BlueFly/Parser.cpp \
@@ -92,6 +98,7 @@ DRIVER_SOURCES = \
 	$(FLARM_SOURCES) \
 	$(FLYTEC_SOURCES) \
 	$(VEGA_SOURCES) \
+	$(PIXHAWK_SOURCES) \
 	$(BLUEFLY_SOURCES) \
 	$(DRIVER_SRC_DIR)/AltairPro.cpp \
 	$(DRIVER_SRC_DIR)/BorgeltB50.cpp \

@@ -735,7 +735,8 @@ endif
 
 ifeq ($(TARGET_IS_KOBO),y)
 XCSOAR_SOURCES += \
-	$(SRC)/Kobo/Model.cpp
+	$(SRC)/Kobo/Model.cpp \
+	$(SRC)/MAVLink.cpp
 endif
 
 ifeq ($(TARGET),ALTAIR)

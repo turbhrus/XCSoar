@@ -471,5 +471,7 @@ GlueMapWindow::Render(Canvas &canvas, const PixelRect &rc)
     DrawFinalGlide(canvas, rc);
     DrawVario(canvas, rc);
     DrawGPSStatus(canvas, rc, Basic());
+    DrawDebugMsgExt(canvas, rc);
+    DrawDebugMsgInt(canvas, rc);
   }
 }
